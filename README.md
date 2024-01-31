@@ -2,8 +2,6 @@
 
 This solves the issue of including a custom keycloak theme using only helm chart overrides. I could not find a simple solution online that did not use a custom Docker container, which is less flexible + maintainable than simply editing `overrides.yaml`.
 
-The primary limitation of this solution is its specificity to AWS. To adapt this approach for a different cloud environment or an on-premises Kubernetes setup, you would need to adjust the storage and access control mechanisms. Instead of an S3 bucket, you could utilize a manually-created ConfigMap for smaller themes or an equivalent object storage service offered by your cloud provider (e.g., Azure Blob Storage for Azure or Google Cloud Storage for GCP). Furthermore, the IAM roles utilized for granting permissions in AWS would be replaced by corresponding access control entities, such as Azure Role-Based Access Control (RBAC) or Google Cloud IAM policies, to grant the necessary permissions for your Kubernetes service accounts.
-
 This guide walks you through the process of deploying a custom Keycloak theme to an EKS cluster using Bitnami's Helm chart with the theme files hosted on an AWS S3 bucket.
 
 ## Prerequisites
@@ -196,3 +194,5 @@ I recommend [k9s](https://k9scli.io/) as a monitoring alternative.
 - Test the entire flow in a non-production environment before deploying to production.
 - Consider the security implications of the permissions granted and follow the principle of least privilege.
 - For a more detailed explanation, refer to the helm.yaml which is generated from the helm template command and includes the final rendered Kubernetes resources.
+- The primary limitation of this solution is its specificity to AWS.
+    - To adapt this approach for a different cloud environment or an on-premises Kubernetes setup, you would need to adjust the storage and access control mechanisms. Instead of an S3 bucket, you could utilize a manually-created ConfigMap for smaller themes or an equivalent object storage service offered by your cloud provider (e.g., Azure Blob Storage for Azure or Google Cloud Storage for GCP). Furthermore, the IAM roles utilized for granting permissions in AWS would be replaced by corresponding access control entities, such as Azure Role-Based Access Control (RBAC) or Google Cloud IAM policies, to grant the necessary permissions for your Kubernetes service accounts.
