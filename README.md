@@ -1,6 +1,6 @@
 # Custom Keycloak Theme Deployment on AWS EKS using Helm Chart
 
-This solves the issue of including a custom keycloak theme using only helm chart overrides. I could not find a simple solution online that did not use a custom Docker container, which is less flexible + maintainable than simply editing `overrides.yaml`.
+This alternative method for implementing a custom Keycloak theme using Helm chart overrides avoids the need for a custom Docker container. It's a simpler and more maintainable solution, relying on editing `overrides.yaml`. This approach, which isn't widely documented online, offers a straightforward way to customize Keycloak themes without extra complexity.
 
 This guide walks you through the process of deploying a custom Keycloak theme to an EKS cluster using Bitnami's Helm chart with the theme files hosted on an AWS S3 bucket.
 
