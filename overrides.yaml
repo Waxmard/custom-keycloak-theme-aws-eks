@@ -1,0 +1,23 @@
+# custom keycloak theme
+extraVolumes:
+  - name: theme-volume
+    emptyDir: {}
+
+extraVolumeMounts:
+  - name: theme-volume
+    mountPath: /opt/bitnami/keycloak/themes
+
+initContainers:
+  - name: init-keycloak-custom-theme
+    image: amazon/aws-cli
+    command: ["sh", "-c"]
+    args:
+      - >
+        aws s3 cp s3://custom-keycloak-login-theme/themes /themes --recursive
+    volumeMounts:
+      - name: theme-volume
+        mountPath: /themes
+
+serviceAccount:
+  annotations:
+    eks.amazonaws.com/role-arn: arn:aws:iam::<account-id>:role/EKSInitContainerCustomKeycloakTheme
